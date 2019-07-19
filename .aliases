@@ -12,7 +12,6 @@ alias dt='cd ~/Desktop'
 alias c='clear'
 alias hs='history | grep'
 alias j='jobs -l'
-alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
