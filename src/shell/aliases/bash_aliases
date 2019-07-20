@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+
+# Easier navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias dl='cd ~/Downloads'
+alias dt='cd ~/Desktop'
+
+# Shortcuts
+alias :q="exit"
+alias c='clear'
+alias e="vim --"
+alias hs='history | grep'
+alias j='jobs -l'
+alias hdi="defaults write com.apple.finder CreateDesktop -bool false \
+  && killall Finder"
+
+alias sdi="defaults write com.apple.finder CreateDesktop -bool true \
+  && killall Finder"
+
+# Detect which `ls` flavor is in use
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+	colorflag='--color'
+	export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+else # macOS `ls`
+	colorflag='-G'
+	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
+fi
+
+# Files
+alias l='ls -lF ${colorflag}'
+alias ll="ls -l"
+alias la='ls -lAF ${colorflag}'
+alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+alias ls='command ls ${colorflag}'
+
+# Grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# Get week number
+alias d='date +%F'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%m-%d-%Y"'
+alias week='date +%V'
+
+# Google Chrome
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
+
+# Editor
+alias vi='vim'
+alias svi='sudo vi'
+
+# Updates
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+# Npm
+alias nis='npm install --save'
+alias nisd='npm install --save-dev'
+
+# Brew
+alias bd="brew doctor"
+alias bi="brew install"
+alias br="brew uninstall"
+alias bs="brew search"
+alias bu="brew update \
+  && brew upgrade \
+  && brew cleanup"
+
+# Git
+alias g='git'
+alias gi='git init'
+alias gs='git status'
+alias ga='git add -A .'
+alias grh="git reset --hard"
+alias gc='git commit -am'
+alias gl='git log --oneline --decorate --color'
+alias gac="git add . && git commit -a -m"
+alias gd='git diff'
+alias gb='git branch'
+alias gf='git fetch'
+alias push='git push'
+alias pull='git pull'
+
+# Composer
+alias cc='composer clear-cache'
+alias cu='composer update'
+alias ci='composer install'
+alias cdo='composer dump-autoload -o'
+
+# Jekyll
+alias jn='jekyll new'
+alias jb='bundle exec jekyll build'
+alias js='bundle exec jekyll serve'
+alias jsd='bundle exec jekyll serve --drafts'
+alias jbw='bundle exec jekyll build --watch'
+
+# Network
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias localip='ipconfig getifaddr en0'
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+alias host="sudo vi /etc/hosts"
+alias flush="sudo killall -HUP mDNSResponder"
+alias flushdns="sudo dscacheutil -flushcache; \
+  sudo killall -HUP mDNSResponder"
+
+# Merge PDF files
+# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
+alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+
