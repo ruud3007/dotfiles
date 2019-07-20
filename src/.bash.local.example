@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Set local aliases.
+
+alias starwars="telnet towel.blinkenlights.nl"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Set PATH additions.
+
+PATH="$PATH:$HOME/projects/dotfiles/src/bin"
+
+export PATH
